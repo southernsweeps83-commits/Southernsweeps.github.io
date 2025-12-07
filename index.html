@@ -20,4 +20,85 @@
         .star2{position:absolute;bottom:-40px;right:-40px;font-size:180px;opacity:0.5;color:var(--pink);animation:spin 14s linear infinite reverse;}
         @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
         .mega-claim{background:linear-gradient(45deg,var(--gold),var(--pink));color:#000;padding:30px;border-radius:25px;max-width:95%;margin:30px auto;font-size:2.5rem;font-weight:900;text-align:center;box-shadow:0 0 50px rgba(255,234,0,0.6);cursor:pointer;animation:pulse 1.5s infinite;}
-        @keyframes pulse{0%,100%{transform:scale(1);}50%{
+        @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.03);}}
+        .coins{position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,0.95);padding:15px;text-align:center;font-size:1.6rem;z-index:9999;border-top:4px solid var(--neon);}
+        .coins span{color:var(--gold);font-size:2.2rem;}
+        .glow-btn{position:fixed;bottom:20px;right:20px;background:var(--neon);color:#000;padding:18px 40px;border-radius:50px;font-size:1.5rem;font-weight:900;box-shadow:0 0 30px var(--neon);z-index:9999;cursor:pointer;}
+        .winner-ticker{background:rgba(0,0,0,0.7);padding:12px;overflow:hidden;font-size:1.3rem;margin:20px 0;}
+        .winner-ticker span{display:inline-block;animation:scroll 35s linear infinite;}
+        @keyframes scroll{0%{transform:translateX(100%);}100%{transform:translateX(-100%);}}
+        .slot-btn{display:block;margin:20px auto;width:95%;max-width:420px;padding:25px;border-radius:20px;font-size:2rem;font-weight:900;text-align:center;box-shadow:0 0 30px;transition:0.3s;}
+        .slot-btn:hover{transform:scale(1.05);}
+    </style>
+</head>
+<body>
+
+    <div class="jackpot" id="jackpot">$251,504.27 <span style="font-size:1rem;">LIVE JACKPOT</span></div>
+
+    <header>
+        <div class="logo">
+            <div style="position:relative;">
+                <div class="logo-num">777</div>
+                <div class="star1">✦</div>
+                <div class="star2">★</div>
+            </div>
+            <div>
+                <h1>SOUTHERN SWEEPS</h1>
+                <p style="font-size:2rem;color:var(--gold);text-shadow:0 0 20px var(--pink);">#1 FREE SWEEPS IN THE SOUTH</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="mega-claim" onclick="claimBonus()">
+        ⚡ 250,000 GOLD + 25 SC FREE ⚡<br><span style="font-size:1.6rem;">NO DEPOSIT – CLAIM INSTANTLY</span>
+    </div>
+
+    <div class="winner-ticker">
+        <span>Alabama $2,100 • Texas $1,450 • Georgia $3,800 • Florida $975 • Tennessee $4,200 • </span>
+    </div>
+
+    <!-- 100% MOBILE-WORKING SLOTS -->
+    <div style="padding:20px;">
+        <h2 style="text-align:center;color:var(--gold);font-size:2.8rem;margin:30px 0;">🔥 HOT SLOTS 🔥</h2>
+
+        <a href="https://play.nsoft.com/seven.html?currency=USD&lang=en&channel=mobile" target="_blank" class="slot-btn" style="background:#ff008c;color:white;box-shadow:0 0 30px #ff008c;">🎰 Classic 777 Slot</a>
+
+        <a href="https://d3nsdzdtst9mlo.cloudfront.net/games/launch.html?gameid=101&freespins=0&language=en&currency=demo" target="_blank" class="slot-btn" style="background:#00ffea;color:#000;box-shadow:0 0 30px #00ffea;">🌟 Starlight Princess</a>
+
+        <a href="https://static.demo.betconstruct.com/games/slot/fruit-party/index.html" target="_blank" class="slot-btn" style="background:#ffea00;color:#000;box-shadow:0 0 30px #ffea00;">🍭 Fruit Party</a>
+
+        <a href="https://games.kalamba.com/gateway/game/moemonkey?lang=en&currency=USD&mode=demo" target="_blank" class="slot-btn" style="background:#9d00ff;color:white;box-shadow:0 0 30px #9d00ff;">🐒 Moo Monkey Mayhem</a>
+
+        <a href="https://demo.redtiger.com/?game=dragonsluck" target="_blank" class="slot-btn" style="background:#ff3300;color:white;box-shadow:0 0 30px #ff3300;">🐉 Dragon's Luck</a>
+    </div>
+
+    <div class="coins">
+        GOLD: <span id="gold">250,000</span>  |  SWEEPS: <span id="sweeps">25.00</span>
+    </div>
+
+    <button class="glow-btn" onclick="claimBonus()">CLAIM NOW</button>
+
+    <script>
+        let gold = 250000, sweeps = 25;
+        function claimBonus() {
+            confetti({particleCount:500,spread:120,origin:{y:0.6}});
+            gold += 150000; sweeps += 15;
+            document.getElementById('gold').innerText = gold.toLocaleString();
+            document.getElementById('sweeps').innerText = sweeps.toFixed(2);
+            alert("JACKPOT BONUS! 150K GC + 15 SC JUST DROPPED!");
+        }
+        setInterval(() => {
+            let j = document.getElementById('jackpot');
+            let current = parseFloat(j.textContent.replace(/[^0-9.]/g,'')) || 250000;
+            j.innerHTML = '$' + (current + Math.random()*12 + 5).toFixed(2) + ' <span style="font-size:1rem;">LIVE JACKPOT</span>';
+        }, 120);
+        setInterval(() => {
+            if (Math.random() > 0.95) {
+                gold += 25000;
+                document.getElementById('gold').innerText = gold.toLocaleString();
+                confetti({particleCount:200,spread:90});
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
