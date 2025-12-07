@@ -16,4 +16,85 @@
         h1{font-family:'Exo 2',sans-serif;font-size:6.5rem;margin:0;background:linear-gradient(90deg,var(--neon),var(--gold),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 40px var(--neon);}
         .logo{display:flex;align-items:center;justify-content:center;gap:25px;}
         .logo-num{font-size:140px;background:linear-gradient(45deg,var(--gold),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;position:relative;}
-        .star1{position:absolute;top:-30px;left:-30px;font-size:
+        .star1{position:absolute;top:-30px;left:-30px;font-size:200px;opacity:0.4;color:var(--neon);animation:spin 10s linear infinite;}
+        .star2{position:absolute;bottom:-40px;right:-40px;font-size:180px;opacity:0.5;color:var(--pink);animation:spin 14s linear infinite reverse;}
+        @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+        .mega-claim{background:linear-gradient(45deg,var(--gold),var(--pink));color:#000;padding:30px;border-radius:25px;max-width:95%;margin:30px auto;font-size:2.5rem;font-weight:900;text-align:center;box-shadow:0 0 50px rgba(255,234,0,0.6);cursor:pointer;animation:pulse 1.5s infinite;}
+        @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.03);}}
+        .coins{position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,0.95);padding:15px;text-align:center;font-size:1.6rem;z-index:9999;border-top:4px solid var(--neon);}
+        .coins span{color:var(--gold);font-size:2.2rem;}
+        .glow-btn{position:fixed;bottom:20px;right:20px;background:var(--neon);color:#000;padding:18px 40px;border-radius:50px;font-size:1.5rem;font-weight:900;box-shadow:0 0 30px var(--neon);z-index:9999;cursor:pointer;}
+        .winner-ticker{background:rgba(0,0,0,0.7);padding:12px;overflow:hidden;font-size:1.3rem;}
+        .winner-ticker span{display:inline-block;animation:scroll 35s linear infinite;}
+        @keyframes scroll{0%{transform:translateX(100%);}100%{transform:translateX(-100%);}}
+    </style>
+</head>
+<body>
+
+    <div class="jackpot" id="jackpot">$250,847.22 <span style="font-size:1rem;">LIVE JACKPOT</span></div>
+
+    <header>
+        <div class="logo">
+            <div style="position:relative;">
+                <div class="logo-num">777</div>
+                <div class="star1">✦</div>
+                <div class="star2">★</div>
+            </div>
+            <div>
+                <h1>SOUTHERN SWEEPS</h1>
+                <p style="font-size:2rem;color:var(--gold);text-shadow:0 0 20px var(--pink);">#1 FREE SWEEPS IN THE SOUTH</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="mega-claim" onclick="claimBonus()">
+        ⚡ 250,000 GOLD + 25 SC FREE ⚡<br><span style="font-size:1.6rem;">NO DEPOSIT – CLAIM INSTANTLY</span>
+    </div>
+
+    <div class="winner-ticker">
+        <span>Player from Alabama just won $1,800 • Texas $975 • Georgia $2,400 • Florida $1,100 • Tennessee $3,200 • </span>
+    </div>
+
+    <!-- REAL SPINNING SLOTS -->
+    <div style="padding:20px;max-width:1200px;margin:0 auto;">
+        <iframe src="https://demo.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20olympgate&websiteUrl=https://southernsweeps.github.io&lobbyUrl=https://southernsweeps.github.io" style="width:100%;height:80vh;border:none;border-radius:20px;box-shadow:0 0 40px #9d00ff;" title="Gates of Olympus"></iframe>
+        <br><br>
+        <iframe src="https://demo.hacksawgaming.com/sugar-rush-1000" style="width:100%;height:80vh;border:none;border-radius:20px;box-shadow:0 0 40px #00ffea;" title="Sugar Rush 1000"></iframe>
+        <br><br>
+        <iframe src="https://demo.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20santasw&websiteUrl=https://southernsweeps.github.io&lobbyUrl=https://southernsweeps.github.io" style="width:100%;height:80vh;border:none;border-radius:20px;box-shadow:0 0 40px #ff008c;" title="Sugar Rush Xmas"></iframe>
+        <br><br>
+        <iframe src="https://static.luckyminigames.com/games/wanted-dead-or-a-wild/index.html" style="width:100%;height:80vh;border:none;border-radius:20px;box-shadow:0 0 40px #ffea00;" title="Wanted Dead or a Wild"></iframe>
+    </div>
+
+    <div class="coins">
+        GOLD: <span id="gold">250,000</span>  |  SWEEPS: <span id="sweeps">25.00</span>
+    </div>
+
+    <button class="glow-btn" onclick="claimBonus()">CLAIM NOW</button>
+
+    <script>
+        let gold = 250000, sweeps = 25;
+        function claimBonus() {
+            confetti({particleCount:400,spread:100,origin:{y:0.6}});
+            gold += 100000; sweeps += 10;
+            document.getElementById('gold').innerText = gold.toLocaleString();
+            document.getElementById('sweeps').innerText = sweeps.toFixed(2);
+            alert("MASSIVE BONUS DROPPED! 100K GC + 10 SC!");
+        }
+        // Jackpot ticker
+        setInterval(() => {
+            let j = document.getElementById('jackpot');
+            let current = parseFloat(j.textContent.replace(/[^0-9.]/g,''));
+            j.innerHTML = '$' + (current + Math.random()*9).toFixed(2) + ' <span style="font-size:1rem;">LIVE JACKPOT</span>';
+        }, 100);
+        // Random wins while they play
+        setInterval(() => {
+            if (Math.random() > 0.96) {
+                gold += 10000;
+                document.getElementById('gold').innerText = gold.toLocaleString();
+                confetti({particleCount:200,spread:80});
+            }
+        }, 4000);
+    </script>
+</body>
+</html>
