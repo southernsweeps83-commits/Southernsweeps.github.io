@@ -3,125 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Southern Sweeps | 10,000 GC + 2 SC Free</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>SOUTHERN SWEEPS | $250,000 JACKPOT LIVE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@900&family=Rajdhani:wght@600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
-        :root {
-            --gold: #fdb813;
-            --purple: #6a0dad;
-            --dark: #0f0f1a;
-        }
+        :root { --neon: #00ffea; --gold: #ffea00; --purple: #9d00ff; --dark: #0d0d1f; }
         * { margin:0; padding:0; box-sizing:border-box; }
-        body {
-            background: linear-gradient(135deg, #0f0f1a 0%, #1a0033 100%);
-            color: white;
-            font-family: 'Roboto', sans-serif;
-            min-height: 100vh;
-            overflow-x: hidden;
+        body { background:#0d0d1f; color:white; font-family:'Rajdhani',sans-serif; overflow-x:hidden; }
+        .jackpot {
+            position:fixed; top:0; left:0; right:0; background:linear-gradient(90deg,#ff008c,#6200ff);
+            padding:12px; text-align:center; font-size:1.8rem; font-weight:900; z-index:10000;
+            animation: glow 2s infinite alternate;
         }
-        header {
-            text-align: center;
-            padding: 2rem 1rem;
-            background: rgba(0,0,0,0.4);
+        @keyframes glow { from {box-shadow:0 0 20px #ff008c;} to {box-shadow:0 0 40px #6200ff;} }
+        header { text-align:center; padding:100px 20px 40px; }
+        h1 { font-family:'Exo 2',sans-serif; font-size:5rem; background:linear-gradient(45deg,var(--neon),var(--gold),var(--purple));
+            -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-shadow:0 0 30px var(--neon); }
+        .mega-claim {
+            background:linear-gradient(45deg,#ffea00,#ff008c); color:#000; padding:25px; border-radius:25px;
+            max-width:95%; margin:30px auto; font-size:2.5rem; font-weight:900; text-align:center;
+            box-shadow:0 0 50px rgba(255,234,0,0.6); cursor:pointer; animation:pulse 1.5s infinite;
         }
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.5rem;
-            background: linear-gradient(90deg, var(--gold), #ff6b35);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        @keyframes pulse { 0%,100% {transform:scale(1);} 50% {transform:scale(1.03);} }
+        .coins { position:fixed; bottom:0; left:0; right:0; background:rgba(0,0,0,0.9); padding:15px; text-align:center;
+            font-size:1.5rem; z-index:9999; border-top:3px solid var(--neon); }
+        .coins span { color:var(--gold); font-size:2rem; }
+        .games { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:20px; padding:20px; }
+        .slot { position:relative; border-radius:20px; overflow:hidden; box-shadow:0 10px 30px rgba(0,255,234,0.3);
+            transition:0.4s; cursor:pointer; }
+        .slot:hover { transform:translateY(-15px) scale(1.05); box-shadow:0 20px 50px rgba(157,0,255,0.6); }
+        .slot img { width:100%; height:220px; object-fit:cover; transition:0.6s; }
+        .slot:hover img { transform:scale(1.15) rotate(3deg); }
+        .slot h3 { position:absolute; bottom:0; width:100%; background:rgba(0,0,0,0.8); padding:12px; font-size:1.3rem; }
+        .winner-ticker {
+            background:rgba(0,0,0,0.7); padding:10px; white-space:nowrap; overflow:hidden; font-size:1.3rem;
         }
-        .logo { font-size: 4rem; margin-bottom: -20px; }
-        .bonus-banner {
-            background: linear-gradient(45deg, var(--gold), #ff6b35);
-            color: black;
-            padding: 1.5rem;
-            border-radius: 20px;
-            text-align: center;
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin: 20px auto;
-            max-width: 90%;
-            box-shadow: 0 10px 30px rgba(253,184,19,0.4);
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse { 0%,100% { transform:scale(1); } 50% { transform:scale(1.05); } }
-        .coins-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0,0,0,0.8);
-            padding: 10 wokół;
-            text-align: center;
-            z-index: 1000;
-            font-size: 1.3rem;
-            font-weight: bold;
-        }
-        .coins-bar span { color: var(--gold); }
-        .login-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--gold);
-            color: black;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-            cursor: pointer;
-            z-index: 999;
-        }
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            padding: 20px;
-            margin-top: 80px;
-        }
-        .game-card {
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            overflow: hidden;
-            text-align: center;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-        .game-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(106,13,173,0.5); }
-        .game-card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-        }
-        .game-card h3 { padding: 15px; background: var(--purple); }
-        .particles {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 1;
+        .winner-ticker span { display:inline-block; animation:scroll 30s linear infinite; }
+        @keyframes scroll { 0% {transform:translateX(100%);} 100% {transform:translateX(-100%);} }
+        .glow-btn {
+            position:fixed; bottom:20px; right:20px; background:var(--neon); color:#000; padding:18px 35px;
+            border-radius:50px; font-size:1.4rem; font-weight:900; box-shadow:0 0 30px var(--neon); z-index:9999;
         }
     </style>
 </head>
 <body>
 
-    <div class="particles" id="particles"></div>
-
-    <div class="coins-bar">
-        Gold Coins: <span id="gold">10,000</span>  |  Sweeps Coins: <span id="sweeps">2.00</span>
-    </div>
+    <div class="jackpot" id="jackpot">$250,847.22 <span style="font-size:1rem;">LIVE JACKPOT</span></div>
 
     <header>
-        <div class="logo">777</div>
-        <h1>Southern Sweeps</h1>
-        <p>Play Free • Win Real Cash</p>
+        <h1>SOUTHERN SWEEPS</h1>
+        <p style="font-size:1.5rem; margin-top:10px;">#1 FREE SWEEPS IN THE SOUTH</p>
     </header>
 
-    <div class="bonus-banner">
-        CLAIM NOW: 10,000 Gold Coins + 2 SC FREE!<br>No purchase needed!
+    <div class="mega-claim" onclick="claimBonus()">
+        ⚡ 250,000 GOLD + 25 SC FREE ⚡<br><span style="font-size:1.5rem;">NO DEPOSIT – CLAIM INSTANTLY</span>
     </div>
 
-    <div class="games-grid">
-        <div class="game-card" onclick="spin('Gates of Olympus')">
-            <img src="https://i.ibb.co/5YxQ8nG
+    <div class="winner-ticker">
+        <span>
+            🔥 Player from Alabama just won $1,250 • Texas hit $875 • Georgia cashed $2,100 • Florida $650 • Tennessee $1,900 •
+            🔥 Player from Alabama just won $1,250 • Texas hit $875 • Georgia cashed $2,100 • Florida $650 • Tennessee $1,900 •
